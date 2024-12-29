@@ -147,12 +147,18 @@ class LocationTracker {
             },
             (error) => {
                 console.error('Watch position error:', error);
-                this.showError("Error updating location: " + error.message);
+                if (error.code === error.TIMEOUT) {
+                    // On timeout, try to restart the watch
+                    console.log('Attempting to restart position watch...');
+                    setTimeout(() => this.watchLocation(), 1000);
+                } else {
+                    this.showError("Error updating location: " + error.message);
+                }
             },
             {
                 enableHighAccuracy: true,
-                timeout: 5000,
-                maximumAge: 0
+                timeout: 30000, // Increased timeout to 30 seconds
+                maximumAge: 5000 // Allow positions up to 5 seconds old
             }
         );
     }
