@@ -3,8 +3,8 @@ class LocationTracker {
         this.map = null;
         this.marker = null;
         this.watchId = null;
-        this.stadiaApiKey = 'YOUR-API-KEY'; // Replace with actual key in production
-        
+        this.stadiaApiKey = window.STADIA_API_KEY;
+
         this.init();
     }
 
@@ -22,7 +22,7 @@ class LocationTracker {
         const errorMessage = document.getElementById('error-message');
         errorMessage.textContent = message;
         errorAlert.style.display = 'block';
-        
+
         // Hide loading overlay if it's still visible
         document.getElementById('loading-overlay').style.display = 'none';
 
@@ -45,10 +45,10 @@ class LocationTracker {
         this.map.on('load', () => {
             // Hide loading overlay
             document.getElementById('loading-overlay').style.display = 'none';
-            
+
             // Add marker
             this.updateMarker(position);
-            
+
             // Start watching position
             this.watchLocation();
         });
@@ -56,7 +56,7 @@ class LocationTracker {
 
     updateMarker(position) {
         const { latitude, longitude } = position.coords;
-        
+
         // Update coordinates display
         document.getElementById('coordinates').textContent = 
             `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
