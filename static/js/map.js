@@ -4,6 +4,8 @@ class LocationTracker {
         this.marker = null;
         this.watchId = null;
         this.stadiaApiKey = window.STADIA_API_KEY;
+        this.retryCount = 0;
+        this.maxRetries = 3;
 
         // Validate API key before initialization
         if (!this.stadiaApiKey) {
@@ -27,7 +29,7 @@ class LocationTracker {
         this.requestLocation();
     }
 
-    showError(message) {
+    showError(message, isTemporary = false) {
         console.error('Error:', message);
         const errorAlert = document.getElementById('error-alert');
         const errorMessage = document.getElementById('error-message');
@@ -37,10 +39,12 @@ class LocationTracker {
         // Hide loading overlay if it's still visible
         document.getElementById('loading-overlay').style.display = 'none';
 
-        // Hide error after 5 seconds
-        setTimeout(() => {
-            errorAlert.style.display = 'none';
-        }, 5000);
+        // Hide error after 5 seconds if it's temporary
+        if (isTemporary) {
+            setTimeout(() => {
+                errorAlert.style.display = 'none';
+            }, 5000);
+        }
     }
 
     initMap(position) {
@@ -108,6 +112,7 @@ class LocationTracker {
             (position) => {
                 console.log('Got initial position:', position);
                 this.initMap(position);
+                this.retryCount = 0; // Reset retry count on success
             },
             (error) => {
                 console.error('Geolocation error:', error);
@@ -126,6 +131,13 @@ class LocationTracker {
                         errorMessage = "An unknown error occurred.";
                 }
                 this.showError(errorMessage);
+
+                // Retry on timeout if we haven't exceeded max retries
+                if (error.code === error.TIMEOUT && this.retryCount < this.maxRetries) {
+                    this.retryCount++;
+                    console.log(`Retrying location request (${this.retryCount}/${this.maxRetries})...`);
+                    setTimeout(() => this.requestLocation(), 2000);
+                }
             },
             {
                 enableHighAccuracy: true,

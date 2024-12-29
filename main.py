@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import logging
 import os
 
@@ -7,6 +7,11 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
+
+@app.before_request
+def log_request_info():
+    logger.debug('Headers: %s', request.headers)
+    logger.debug('Body: %s', request.get_data())
 
 @app.route('/')
 def index():
