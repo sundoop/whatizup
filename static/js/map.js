@@ -7,9 +7,12 @@ class LocationTracker {
         this.retryCount = 0;
         this.maxRetries = 3;
 
+        // Update loading text
+        document.getElementById('loading-text').textContent = 'Checking configuration...';
+
         // Validate API key before initialization
         if (!this.stadiaApiKey) {
-            this.showError('Stadia Maps API key is not configured');
+            this.showError('Stadia Maps API key is not configured', false);
             console.error('Missing Stadia Maps API key');
             return;
         }
@@ -19,6 +22,8 @@ class LocationTracker {
     }
 
     init() {
+        document.getElementById('loading-text').textContent = 'Requesting location permission...';
+
         if (!navigator.geolocation) {
             this.showError('Geolocation is not supported by your browser');
             console.error('Geolocation API not supported');
@@ -51,34 +56,42 @@ class LocationTracker {
         const { latitude, longitude } = position.coords;
         console.log(`Initializing map at coordinates: ${latitude}, ${longitude}`);
 
+        document.getElementById('loading-text').textContent = 'Loading map...';
+
         try {
+            // Create map instance
             this.map = new maplibregl.Map({
                 container: 'map',
                 style: `https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json?api_key=${this.stadiaApiKey}`,
                 center: [longitude, latitude],
-                zoom: 15
+                zoom: 15,
+                failIfMajorPerformanceCaveat: true
             });
 
-            this.map.on('load', () => {
+            // Set up event listeners
+            this.map.once('load', () => {
                 console.log('Map loaded successfully');
-                // Hide loading overlay
                 document.getElementById('loading-overlay').style.display = 'none';
-
-                // Add marker
                 this.updateMarker(position);
-
-                // Start watching position
                 this.watchLocation();
             });
 
             this.map.on('error', (e) => {
                 console.error('Map error:', e);
-                this.showError('Error loading map tiles. Please check your API key.');
+                this.showError(`Error loading map: ${e.error.message || 'Failed to load map tiles'}`, false);
             });
+
+            // Add timeout for map loading
+            setTimeout(() => {
+                if (document.getElementById('loading-overlay').style.display !== 'none') {
+                    console.error('Map load timeout');
+                    this.showError('Map is taking too long to load. Please refresh the page.', false);
+                }
+            }, 15000);
 
         } catch (error) {
             console.error('Error creating map:', error);
-            this.showError('Failed to initialize map');
+            this.showError(`Failed to initialize map: ${error.message}`);
         }
     }
 

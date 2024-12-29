@@ -1,0 +1,70 @@
+Position updated: 
+GeolocationPosition { coords: GeolocationCoordinates, timestamp: 1735441974316 }
+map.js:157:25
+Updating marker position: 37.35915382585717, -121.88308173125884 map.js:87:17
+Position updated: 
+GeolocationPosition { coords: GeolocationCoordinates, timestamp: 1735441974329 }
+map.js:157:25
+Updating marker position: 37.35915382542458, -121.88308173159287 map.js:87:17
+Position updated: 
+GeolocationPosition { coords: GeolocationCoordinates, timestamp: 1735441974330 }
+map.js:157:25
+Updating marker position: 37.35915382513499, -121.8830817318165 map.js:87:17
+Watch position error: 
+GeolocationPositionError { code: 3, message: "Position acquisition timed out" }
+map.js:161:25
+    watchId https://location-tracker-sundeepyed.replit.app/static/js/map.js:161
+Attempting to restart position watch... map.js:164:29
+Watch position error: 
+GeolocationPositionError { code: 3, message: "Position acquisition timed out" }
+map.js:161:25
+Attempting to restart position watch... map.js:164:29
+Position updated: 
+GeolocationPosition { coords: GeolocationCoordinates, timestamp: 1735442037075 }
+map.js:157:25
+Updating marker position: 37.35915059445041, -121.88309358649326 map.js:87:17
+Position updated: 
+GeolocationPosition { coords: GeolocationCoordinates, timestamp: 1735442037081 }
+map.js:157:25
+Updating marker position: 37.35915059445041, -121.88309358649326 map.js:87:17
+Position updated: 
+GeolocationPosition { coords: GeolocationCoordinates, timestamp: 1735442037103 }
+map.js:157:25
+Updating marker position: 37.35915059224218, -121.88309359434285 map.js:87:17
+Position updated: 
+GeolocationPosition { coords: GeolocationCoordinates, timestamp: 1735442037104 }
+map.js:157:25
+Updating marker position: 37.35915059513424, -121.88309358394442 map.js:87:17
+Position updated: 
+GeolocationPosition { coords: GeolocationCoordinates, timestamp: 1735442037104 }
+map.js:157:25
+Updating marker position: 37.35915059575333, -121.88309358171757 map.js:87:17
+Position updated: 
+GeolocationPosition { coords: GeolocationCoordinates, timestamp: 1735442037119 }
+map.js:157:25
+Updating marker position: 37.35915059632742, -121.88309357965841 map.js:87:17
+Position updated: 
+GeolocationPosition { coords: GeolocationCoordinates, timestamp: 1735442037119 }
+map.js:157:25
+Updating marker position: 37.35915059635109, -121.88309357957549 map.js:87:17
+Position updated: 
+GeolocationPosition { coords: GeolocationCoordinates, timestamp: 1735442037674 }
+map.js:157:25
+Updating marker position: 37.35915059635109, -121.88309357957549 map.js:87:17
+Position updated: 
+GeolocationPosition { coords: GeolocationCoordinates, timestamp: 1735442037677 }
+map.js:157:25
+Updating marker position: 37.35915059635109, -121.88309357957549 map.js:87:17
+Position updated: 
+GeolocationPosition { coords: GeolocationCoordinates, timestamp: 1735442037705 }
+map.js:157:25
+Updating marker position: 37.35915060044552, -121.88309356485506 map.js:87:17
+Position updated: 
+GeolocationPosition { coords: GeolocationCoordinates, timestamp: 1735442037706 }
+map.js:157:25
+Updating marker position: 37.35915059904144, -121.88309356990366 map.js:87:17
+Position updated: 
+GeolocationPosition { coords: GeolocationCoordinates, timestamp: 1735442037706 }
+map.js:157:25
+Updating marker position: 37.35915059770793, -121.88309357469781 map.js:87:17
+Updating marker position: 37.35915059686388, -121.88309357772832 map.js:87:17
